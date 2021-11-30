@@ -1,0 +1,113 @@
+{% extends 'layout.html' %}
+
+{% block title %} Tecnologías {% endblock %}
+
+{% block content %}
+
+    <div class="row bg-img">
+        <div class="col-md-9">
+            <div class="fondo">
+                <h1 class="text-center">Python</h1>
+                <p>
+                    Es un lenguaje de programación de tipado dinamico, multiproposito y orientado a objetos. Su popularidad ha aumentado un 30% en el 2021 al tener una sintaxis limpia y sencilla produciendo codigo más legible, una curva de aprendizaje ¡rapida! para que hasta niños de primaria escriban codigo Python. 
+                </p>
+                <p>
+                    Python es el segundo lenguaje de programación más utilizado en el mundo según una <a class="link-info" href="https://insights.stackoverflow.com/survey/2021#most-popular-technologies-language" target="_blank">Encuesta</a> realizada en Stack Overflow a más de 80,000 desarrolladores en Mayo 2021 a sido un lenguaje creado en la decada de los noventa por el desarrollador <a class="link-info" href="https://es.wikipedia.org/wiki/Guido_van_Rossum" target="_blank">Guido van Rossum</a> el cual no se imagino que este lenguaje iba a ser tan demandado y popular. Python es utilizado en:
+                    <ul>
+                        <li>Ciencia de Datos</li>
+                        <li>Desarrollo Web</li>
+                        <li>Desarrollo Movil</li>
+                        <li>Aplicaciones de Escritorio</li>
+                        <li>Seguridad en informatica</li>
+                        <li>Inteligencia Artificial</li>
+                        <li>Machine Learning</li>
+                    </ul>
+                </p>
+                <p>
+                    Las distribuciones GNU Linux utilizan python para su funcionamiento teniendo de forma predeterminada interpretes de Python incoporados. Cada distro linux cuenta con su propio gestor de paquetes, fedora utiliza el administrador "dnf" que a sido escrito en el lenguaje python aunque su velocidad de ejecucion no sea la mejor pero no le resta medito al poder que fue adquiriendo a lo largo del tiempo contando con PIP un administrador de paquetes para instalar multiples librerias y frameworks.
+                </p>
+                <p>
+                    Python cuenta con una gran comunidad activa que a desarrollado sus propias librerias, cada una fue evolucionando en versiones sin embargo Python permite trabajar con diferentes versiones de una misma libreria en más de un proyecto a través de "entornos virtuales" las librerias se instalan en el entorno del proyecto y no en todo el sistema opertativo evitando las dependencias de un proyecto interfieran en otro.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-3 my-auto">
+            <div class="text-center mx-auto">
+                <img class="img" src="../../static/img/python.svg" alt="python">
+            </div>
+            <div class="text-center mt-5">
+                <a class="btn btn-secondary mb-3" href="https://docs.python.org/es/3/reference/index.html" target="_blank">Leer más</a>
+            </div>
+        </div>
+    </div>
+
+    <!--TARJETAS DE LAS TECNOLOGIAS UTILIZADAS-->
+    <div class="row card-group bg-dark text-light">
+        <h2 class="text-center mt-5 mb-5">Tecnologias utilizadas para crear esta web</h2>
+        <!--CARD GROUP-->
+        <div class="card-group">
+            <div class="card bg-purple my-auto">
+              <img src="../../static/img/bootstrap.svg" class="card-img-top h-25 w-50 mt-3 mx-auto" alt="bootstrap">
+              <div class="card-body">
+                <h5 class="card-title">Bootstrap</h5>
+                <p class="card-text">
+                     Es un framework front-end utilizado para desarrollar aplicaciones web y sitios mobile first, o sea, con un layout que se adapta a la pantalla del dispositivo utilizado por el usuario. ¡Aprende todo sobre esta tecnología y cómo utilizarla!...                </p>
+                <a target="_blank" href="https://rockcontent.com/es/blog/bootstrap/" class="btn btn-primary">Seguir leyendo</a>
+              </div>
+            </div>
+
+            <div class="card bg-success br-25">
+              <img src="../../static/img/django.svg" class="card-img-top mx-auto w-75 h-50" alt="django">
+              <div class="card-body">
+                <h5 class="card-title">Django</h5>
+                  <p class="card-text">Es un framework web de alto nivel que permite el desarrollo rápido de sitios web seguros y mantenibles. Desarrollado por programadores experimentados, Django se encarga de gran parte de las complicaciones del desarrollo web, por lo que puedes concentrarte en escribir tu aplicación sin necesidad de reinventar la rueda...</p>
+                  <a target="_blank" href="https://developer.mozilla.org/es/docs/Learn/Server-side/Django/Introduction" class="btn btn-primary">Seguir leyendo</a>
+              </div>
+            </div>
+            <div class="card bg-secondary br-25">
+              <img src="../../static/img/sqlite.svg" class="card-img-top mt-3 w-75 h-50 mx-auto" alt="sqlite">
+              <div class="card-body">
+                <h5 class="card-title">SQLite</h5>
+                  <p class="card-text">Es una base de datos relacional compatible con SQL. A diferencia de otros sistemas basados ​​en SQL como MySQL y PostgreSQL, SQLite no utiliza una arquitectura cliente-servidor...</p>
+                  <a target="_blank" href="https://diarioinforme.com/que-es-sqlite-y-por-que-es-tan-popular/" class="btn btn-primary">Seguir leyendo</a>
+              </div>
+            </div>
+          </div>
+    </div>
+
+    <!--COMENTARIOS-->
+    <div class="row">
+        <div class="bg-dark text-light">
+
+            {% if response %} 
+                <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                    <strong>Alerta!</strong> {{response}}.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endif %}
+
+            <h2 id="comentario" class="text-center mt-5">Comentarios</h2>
+            <div class="col-md-3 mx-auto">
+                <form action="{% url 'comentar' %}" method="post"> {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Nombre de usuario</label>
+                        <input name="user" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Ryan Ray" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Comentario</label>
+                        <textarea name="text" class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+                    </div>
+                    <input class="btn btn-primary" type="submit" value="Comentar">
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="row bg-dark">
+        <div class="mt-80">
+            {% if posts %}
+                {% include 'partials/_publicaciones.html' %}
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

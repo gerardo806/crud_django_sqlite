@@ -1,0 +1,35 @@
+.bg-img{
+    background-image: url('../img/code.jpg');
+    background-repeat: none;
+    background-position: center;
+    background-image: fixed;
+    background-size: cover;
+    color: #fff;
+}
+
+.img{
+    width: 200px;
+    height: 200px;
+}
+
+.bg-purple{
+    background-color: #6209DB70;
+    border-radius: 25px;
+}
+
+.br-25{
+    border-radius: 25px;
+}
+
+.mt-80{
+    margin-top: 80px;
+}
+
+.fondo{
+    background-color: #33333380;
+    border-radius: 25px;
+    margin-bottom: 35px;
+    margin-left: 10px;
+    margin-top: 80px;
+    padding: 10px;
+}
