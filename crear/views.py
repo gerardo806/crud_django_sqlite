@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from crear.models import usuarios
+from django.contrib import messages
 
 registros = lambda: usuarios.objects.all()
 tarea = lambda id: usuarios.objects.get(id=id)
@@ -8,14 +9,14 @@ def insert_read(request):
     if request.method == 'POST':
         titulo = request.POST['title']
         description = request.POST['description']
-        response = "Error, Vuelva a intentarlo"
         if titulo and description:        
             try:
                 usuarios.objects.create(titulo=titulo, descripcion=description)
-                response =  "Registro insertado con exito"
+                messages.success(request, "Registro insertado con exito")
             except: 
-                response = "Error, Tarea no registrada"
-        return render(request, 'crear/crud.html', {"response": response, "registros": registros()})
+                messages.success(request, "Error, Tarea no registrada")
+        else: messages.success(request, "Error, Datos vacios")
+        return redirect("crear:read_insert")
     return render(request, 'crear/crud.html', {"registros": registros()})
 
 def edit(request, id):
@@ -27,16 +28,15 @@ def edit(request, id):
 
 def update(request, id):
     task = tarea(id)
-    response = "Tarea actualizada con exito"
     if request.method == 'POST':
             task.titulo = request.POST['title']
             task.descripcion = request.POST['description']
             task.save()
-    return render(request, 'crear/crud.html', {"registros": registros(), "response": response})
+            messages.success(request, "Tarea actualizada con exito")
+    return redirect("crear:read_insert")
 
 def deleted(request, id):
     task = tarea(id)
     task.delete()
-    registros = usuarios.objects.all()
-    response = "Tarea eliminada con exito"
-    return render(request, 'crear/crud.html', {"response": response, "registros": registros})
+    messages.success(request, "Tarea eliminada con exito")
+    return redirect("crear:read_insert")

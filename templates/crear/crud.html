@@ -5,29 +5,33 @@
 {% block content %}
 
     <div class="row p-2 mt-5">
-        {% if response %} {% include 'partials/_alert.html' %} {% endif %}
+        {% include 'partials/_alert.html' %}
         <div class="col-md-3 mt-3">
-            {% if task %}
-                <h1>Tarea Encontrada</h1>
-                <form action="{% url 'crear:update' task.id %}" method="post"> {% csrf_token %}
-            {% else %}
-                <h1>Crear Tarea</h1>
-                <form action="{% url 'crear:insert_read' %}" method="post"> {% csrf_token %}
-            {% endif %}
-                <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Titulo</label>
-                    <input name="title" value="{{task.titulo}}" type="text" class="form-control" id="exampleFormControlInput1" placeholder="..." required>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Descripcion</label>
-                    <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3" required>{{task.descripcion}}</textarea>
-                </div>
-                <input type="submit" value="Guardar" class="btn btn-primary">
-            </form>
+            <div class="text-white">
+                {% if task %}
+                    <h1>Tarea Encontrada</h1>
+                    <form action="{% url 'crear:update' task.id %}" method="post"> {% csrf_token %}
+                {% else %}
+                    <h1>Crear Tarea</h1>
+                    <form action="{% url 'crear:read_insert' %}" method="post"> {% csrf_token %}
+                {% endif %}
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Titulo</label>
+                            <input name="title" value="{{task.titulo}}" type="text" class="form-control" id="exampleFormControlInput1" placeholder="..." required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Descripcion</label>
+                                <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3" required>{{task.descripcion}}</textarea>
+                            </div>
+                        <input type="submit" value="Guardar" class="btn btn-primary">
+                    </form>
+            </div>
         </div>
         <div class="col-md-9 mt-3">
-            <h2 class="text-center">Tareas</h2>
-            {% include 'partials/_table.html' %}
+            <div class="text-white">
+                <h2 class="text-center">Tareas</h2>
+                {% include 'partials/_table.html' %}
+            </div>
         </div>
     </div>
 

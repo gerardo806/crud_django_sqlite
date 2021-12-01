@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from tecnologias.models import comentarios
+from django.contrib import messages
 
 publicaciones = lambda: tuple(comentarios.objects.all())
 
@@ -11,7 +12,6 @@ def tecno(request):
 
 
 def comentar(request):
-    response = "Error, vuelva a intentarlo"
     if request.method == 'POST':
         user = request.POST['user']
         text = request.POST['text']
@@ -19,11 +19,11 @@ def comentar(request):
         if user and text:
             try:
                 comentarios.objects.create(usuario=user, comentario=text)
-                response = "Comentario publicado"
+                messages.success(request, "Comentario publicado")
             except:
-                response = "Error, comentario no publicado"
-        else: response = "Error, Datos vacios"
-    return render(request, 'tecnologias/tecno.html', {"response": response, "posts": publicaciones()})
+                messages.success(request, "Error, comentario no publicado")
+        else: messages.success(request, "Error, Datos vacios")
+    return redirect("tecno")
 
 def about(request):
     return render(request, 'about.html')

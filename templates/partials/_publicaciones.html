@@ -1,8 +1,8 @@
 {% for post in posts %}
 
-<div class="card w-auto bg-dark text-light border-primary mb-3 mx-2 d-inline-block">
+<div class="card w-auto bg-dark text-white border-primary mb-3 mx-2 d-inline-block">
   <div class="card-header">Publicación {{post.id}}</div>
-  <div class="card-body text-light">
+  <div class="card-body">
     <h5 class="card-title">{{post.usuario | upper}}</h5>
     <p class="card-text">{{post.comentario}}.</p>
   </div>
